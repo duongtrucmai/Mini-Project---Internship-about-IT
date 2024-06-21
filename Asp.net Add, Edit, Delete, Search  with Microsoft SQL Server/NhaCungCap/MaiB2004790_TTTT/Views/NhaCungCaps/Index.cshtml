@@ -1,0 +1,73 @@
+﻿@model IEnumerable<MaiB2004790_TTTT.Models.NhaCungCap>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Danh Mục Nhà Cung Cấp</h1>
+
+<p>
+    <a asp-action="Create">Thêm Nhà Cung Cấp Mới</a>
+</p>
+
+<form asp-controller="NhaCungCaps" asp-action="Index">
+    <p>
+        Tìm kiếm: <input type="text" name="SearchString"/>
+        <input type="submit" value="Lọc"/>
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Mã Số Thuế 
+            </th>
+            <th>
+                Tên Nhà Cung Cấp
+            </th>
+            <th>
+                Địa Chỉ
+            </th>
+            <th>
+                SĐT
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Số Tài Khoản
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaSoThue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenNhaCungCap)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sdt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoTk)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
