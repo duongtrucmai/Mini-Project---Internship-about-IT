@@ -1,0 +1,42 @@
+﻿@model MaiB2004790_TTTT.Models.KhachHang
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>KhachHang</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Tên)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Tên)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Họ)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Họ)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Sđt)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Sđt)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ĐịaChỉ)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ĐịaChỉ)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
