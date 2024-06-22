@@ -1,0 +1,39 @@
+﻿@using WebApplication8_PDF.Models
+@model User
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="questionnaire">
+    <form asp-controller="Report">
+        <div class="header">
+            <h2>Nhập thông tin Khách hàng</h2>
+            <span>* - Nhập đầy đủ các thông tin</span>
+        </div>
+        <ul>
+            <li>
+                <label asp-for="Tên">Tên:</label>
+                <input type="text" asp-for="Tên" placeholder="Nhập tên" >
+                <span class="prompt">Nhập lại tên</span>
+            </li>
+            <li>
+                <label asp-for="Họ">Họ:</label>
+                <input type="text" asp-for="Họ" placeholder="Nhập họ" >
+                <span class="prompt">Nhập lại họ </span>
+            </li>
+                                            <li>
+                <label asp-for="Sđt">Sđt:</label>
+                <input type="tel" asp-for="Sđt">
+                <span class="prompt">Nhập lại Sđt</span>
+            </li>
+            <li>
+                <label asp-for="ĐịaChỉ">Địa Chỉ:</label>
+                <textarea rows="5" cols="54" asp-for="ĐịaChỉ"></textarea>
+            </li>
+            <li>
+                <input type="submit" name="submit" value="Xuất Báo Cáo PDF">
+            </li>
+        </ul>
+    </form>
+</div>
