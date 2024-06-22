@@ -1,0 +1,128 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<script src="~/Content/FileSaver.js"></script> @*could be downloaded from https://github.com/eligrey/FileSaver.js/blob/master/src/FileSaver.js*@
+<script>
+    function fnExcelReport(id, name) {
+        var tab_text = '<html xmlns: x="urn:schemas-microsoft-com:office:excel">';
+        tab_text = tab_text + '<head><xml><x: ExcelWorkbook><x: ExcelWorksheets><x: ExcelWorksheet>';
+        tab_text = tab_text + '<x: Name>Test Sheet</x: Name>';
+        tab_text = tab_text + '<x: WorksheetOptions><x: Panes></x: Panes></x: WorksheetOptions ></x: ExcelWorksheet > ';
+        tab_text = tab_text + '</x:ExcelWorksheets></x:ExcelWorkbook></xml></head><body>';
+        tab_text = tab_text + "<table border='1px' style='color:black'>";
+
+
+        var exportTable = $('#' + id).clone();
+        exportTable.find('th').last().remove();
+        exportTable.find('input').each(function (index, elem) { $(elem).remove(); });
+        exportTable.find('a').each(function (index, elem) { $(elem).remove(); });
+
+        tab_text = tab_text + exportTable.html();
+        tab_text = tab_text + '</table></body></html>';
+        var fileName = "DanhMucKhachHang" + '.xls';
+
+        //Save the file
+        var blob = new Blob([tab_text], { type: "application/vnd.ms-excel;charset=utf-8" })
+        window.saveAs(blob, fileName);
+    }
+</script>
+<h1>Danh mục Khách Hàng</h1>
+
+<p>
+    <a asp-action="Create">Thêm Khách hàng mới</a>
+</p>
+
+<form asp-controller="KhachHangs" asp-action="Index">
+    <p>
+        Tìm kiếm: <input type="text" name="SearchString" />
+        <input type="submit" value="Lọc" 
+
+    </p>
+</form>
+
+
+<br /><br />
+
+    <table  class="table" id="dataTable">
+        <thead>
+            <tr>
+                <th>Tên</th>
+                <th>Họ</th>
+                <th>Sđt</th>
+                <th>Địa chỉ</th>
+<th> </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Trúc Mai</td>
+                <td>Dương</td>
+                <td>392652015</td>
+                <td>quan Ninh Kieu, thành pho Can Tho</td>
+                <td><a href="">Edit |
+</a><a href="">Details |
+</a><a href="">Delete</a></td>
+            </tr>
+
+<tr>
+                <td>An</td>
+                <td></td>
+                <td>349667273</td>
+                <td>12, Nghe An</td>
+                <td><a href="">Edit |
+</a><a href="">Details |
+</a><a href="">Delete</a></td>
+            </tr>
+
+<tr>
+                <td>Cường</td>
+                <td>Lâm</td>
+                <td>768955521</td>
+                <td>137/12, Ha Noi</td>
+                <td><a href="">Edit |
+</a><a href="">Details |
+</a><a href="">Delete</a></td>
+            </tr>
+
+<tr>
+                <td>Minh Khôi</td>
+                <td>Trần</td>
+                <td>348672567</td>
+                <td>quan Go Vap, thanh pho Ho Chi Minh</td>
+                <td><a href="">Edit |
+</a><a href="">Details |
+</a><a href="">Delete</a></td>
+            </tr>
+
+<tr>
+                <td>Ngọc</td>
+                <td>Kim</td>
+                <td>923045452</td>
+                <td>quan 1, thanh pho Ho Chi Minh</td>
+                <td><a href="">Edit |
+</a><a href="">Details |
+</a><a href="">Delete</a></td>
+            </tr>
+
+<tr>
+                <td>Trần Oanh</td>
+                <td></td>
+                <td>739468261</td>
+                <td>Da Nang</td>
+                <td><a href="">Edit |
+</a><a href="">Details |
+</a><a href="">Delete</a></td>
+            </tr>
+
+
+
+
+
+           
+
+        </tbody>
+    </table>
+
+<br /><br />
+<button class="btn btn-primary" onclick="javascript: fnExcelReport('dataTable', 'data')">Xuất File Excel</button>
